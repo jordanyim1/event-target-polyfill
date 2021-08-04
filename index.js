@@ -25,7 +25,7 @@ if (typeof root.Event !== "function" || !isConstructor(root.Event)) {
   })();
 }
 
-if (typeof root.EventTarget === "undefined" || !isConstructor(root.Event)) {
+if (typeof root.EventTarget === "undefined" || !isConstructor(root.EventTarget)) {
   root.EventTarget = (function () {
     function EventTarget() {
       this.__listeners = new Map();
@@ -76,7 +76,7 @@ if (typeof root.EventTarget === "undefined" || !isConstructor(root.Event)) {
     };
 
     EventTarget.prototype.dispatchEvent = function (event) {
-      if (!(event instanceof Event)) {
+      if (!(event instanceof Event) && !(event instanceof CustomEvent)) {
         throw new TypeError(
           `Failed to execute 'dispatchEvent' on 'EventTarget': parameter 1 is not of type 'Event'.`
         );
