@@ -7,7 +7,11 @@ function isConstructor(fn) {
   try {
     new fn();
   } catch (error) {
-    return false;
+    try {
+      new fn(null);
+    } catch(error) {
+      return false;
+    }
   }
   return true;
 }
